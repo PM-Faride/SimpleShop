@@ -1,0 +1,42 @@
+<%- include("../includes/head.ejs") %>  
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    <% if(loginErr){ %>
+        <div class="error">
+            <%= loginErr %> 
+        </div>
+    <% } %> 
+  <div class="main position-center">
+    <section class="sign-in">
+      <div class="container">
+          <div class="signin-content">
+              <div class="signin-image">
+                  <figure><img src="/images/signin-image.jpg" alt="sing in image"></figure>
+              </div>
+              <div class="signin-form">
+                  <h2 class="form-title">Sign In</h2>
+                  <form method="POST" class="register-form" id="login-form" action="/login">
+                      <div class="form-group">
+                          <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                          <input type="text" name="username" placeholder="Username or Email"/>
+                      </div>
+                      <div class="form-group">
+                          <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                          <input type="password" name="password" placeholder="Password"/>
+                      </div>
+
+                      <div class="form-group form-button">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                      </div>
+                  </form>
+                  <a href="/forgotPassword" class="signup-image-link">Forgot your password?</a>
+              </div>
+          </div>
+      </div>
+    </section>
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+<%- include("../includes/end.ejs") %> 

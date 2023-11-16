@@ -1,0 +1,40 @@
+<%- include("../includes/head.ejs") %> 
+<%- include("../bootstrap.ejs") %> 
+</head>
+<body>
+    <%- include("../includes/menu.ejs") %>
+    <main>
+        <% if(users.length) { %> 
+            <div style="width: 50%; margin: auto;">
+                <table class="table" style="text-align:center;">
+                    <thead>
+                        <th></th>
+                        <th>email</th>
+                        <th>position</th>
+                        <th>edit</th>
+                    </thead>
+                    <% for (let i = 0; i < users.length; i++) { %>
+                        <% const user = users[i]; %>
+                        <tr>
+                            <td><%= i+1 %> </td>
+                            <td><%= user.email %> </td>
+                            <td><%= user.position %> </td>
+                            <td>
+                                <a href="/users/edit-user/<%= user._id %>" class="btn btn-success">
+                                    <i class='fa fa-edit'></i>
+                                </a>
+                                <form action="/users/delete-user/<%= user._id %>" method="post" style="display: inline;">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% } %> 
+                </table>
+            </div>
+        <% } %> 
+        <div  style="text-align:center;">
+            <a href="/users/add-user" class="btn btn-dark"><i class="fa fa-plus" aria-hidden="true"></i> Add User</a>
+        </div>
+    </main>
+<%- include("../includes/end.ejs") %>

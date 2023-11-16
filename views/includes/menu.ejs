@@ -1,0 +1,57 @@
+<header>
+  <nav>
+    <ul class="nav__links">
+      <li>
+        <a href="/home" class="<%= path === '/home' ? 'active' : '' %>">Home</a>
+      </li>
+      <li>
+        <a href="/products" class="<%= path === '/products' ? 'active' : '' %>"
+          >Products</a
+        >
+      </li>
+      <% if(viewUsers){ %>
+      <li>
+        <a
+          href="/users"
+          class="<%= path === '/users'|| path==='/users/edit-user' ? 'active' : '' %>"
+          >Users</a
+        >
+      </li>
+      <% } %>
+      <li>
+        <a
+          href="/categories"
+          class="<%= path === '/categories' ? 'active' : '' %>"
+          >Categories</a
+        >
+      </li>
+    </ul>
+    <div class="dropdown">
+      <button
+        class="btn dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style="background: #4292dc; color: white"
+      >
+        Profile
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Edit</a>
+        <form action="/logout" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button type="submit" class="dropdown-item">Logout</button>
+        </form>
+      </div>
+    </div>
+    <% if(backLink) { %>
+    <div style="position: absolute; right: 3%">
+      <a href="<%= backLink %>" style="color: white">
+        <i class="fa fa-arrow-up"></i>
+      </a>
+    </div>
+    <% } %>
+  </nav>
+</header>

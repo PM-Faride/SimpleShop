@@ -1,0 +1,47 @@
+<%- include("../includes/head.ejs") %>  
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+  <div class="main position-center">
+    <section class="sign-in">
+      <div class="container">
+          <div class="signin-content">
+              <div class="signin-image">
+                  <figure><img src="/images/resetPass.jpg" alt="reset password image"></figure>
+              </div>
+              <div class="signin-form">
+                  <h2 class="form-title" style="margin-bottom:20px;">Reset Password</h2>
+                  <form method="POST" class="register-form" id="login-form" action="/resetPass">
+                      <% if(passErr){ %>                            
+                          <div class="validationErr">
+                              <%= passErr.msg %> 
+                          </div>
+                      <% } %>
+                      <div class="form-group <% if(passErr){ %>invalid<% } %>">
+                          <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                          <input type="password" name="password" placeholder="Password" value="<%= password %>" />
+                      </div>
+                      <% if(confirmPassErr){ %>                            
+                          <div class="validationErr">
+                              <%= confirmPassErr.msg %> 
+                          </div>
+                      <% } %>
+                      <div class="form-group <% if(confirmPassErr){ %>invalid<% } %>">
+                        <label for="confirmPass"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" name="confirmPass" placeholder="Repeat Password" value="<%=confirmPass%>"/>
+                    </div>
+                    <div class="form-group form-button">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="token" value="<%= token %>">
+                        <input type="hidden" name="userId" value="<%= userId %>">
+                        <input type="submit" name="resetPass" id="resetPass" class="form-submit" value="Reset Password"/>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </section>
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+<%- include("../includes/end.ejs") %> 
